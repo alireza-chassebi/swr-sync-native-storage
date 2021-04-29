@@ -6,11 +6,17 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [],
+  "keywords": [
+    "Cache",
+    "Offline",
+    "React-Native",
+    "SWR",
+    "Async-Storage"
+  ],
   "author": "Alireza Chassebi",
   "license": "MIT",
   "peerDependencies": {
     "@react-native-async-storage/async-storage": "^1.15.4",
-    "swr": "^0.2.0-beta.0"
+    "swr": "^0.5.5"
   }
 }

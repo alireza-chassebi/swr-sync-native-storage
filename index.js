@@ -11,8 +11,9 @@ export async function syncWithAsyncStorage(parser = baseParser) {
     const keys = await AsyncStorage.getAllKeys();
     storageData = await AsyncStorage.multiGet(keys);
   } catch (e) {
-    return false;
+    return [false, null];
   }
+
   for (let [key, data] of Object.entries(storageData)) {
     if (!key.startsWith('swr-')) {
       continue;
@@ -21,7 +22,7 @@ export async function syncWithAsyncStorage(parser = baseParser) {
     cache.set(key.slice(4), parser(data).swrValue, false);
   }
 
-  cache.subscribe(() => {
+  const subscription = cache.subscribe(() => {
     const keys = cache.keys();
     for (let key of keys) {
       AsyncStorage.setItem(
@@ -32,5 +33,5 @@ export async function syncWithAsyncStorage(parser = baseParser) {
     // TODO add promise.all
   });
 
-  return true;
+  return [true, subscription];
 }
