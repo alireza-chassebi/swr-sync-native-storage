@@ -14,7 +14,7 @@ export async function syncWithAsyncStorage(parser = baseParser) {
     return [false, null];
   }
 
-  for (let [key, data] of Object.entries(storageData)) {
+  for (let [key, data] of storageData) {
     if (!key.startsWith('swr-')) {
       continue;
     }
@@ -25,12 +25,12 @@ export async function syncWithAsyncStorage(parser = baseParser) {
   const subscription = cache.subscribe(() => {
     const keys = cache.keys();
     for (let key of keys) {
+      // TODO deal with error
       AsyncStorage.setItem(
         `swr-${key}`,
         JSON.stringify({ swrValue: cache.get(key) })
       ).catch();
     }
-    // TODO add promise.all
   });
 
   return [true, subscription];

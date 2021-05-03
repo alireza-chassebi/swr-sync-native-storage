@@ -1,6 +1,6 @@
 {
   "name": "swr-sync-native-storage",
-  "version": "0.0.1",
+  "version": "0.0.3",
   "description": "Synchronize SWR cache with AsyncStorage to get offline cache.",
   "main": "index.js",
   "scripts": {
